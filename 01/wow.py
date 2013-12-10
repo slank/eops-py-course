@@ -1,5 +1,11 @@
-#!/usr/bin/env python
 import sys
+
+
+more_args = {
+    "I can haz": "cheezeburger",
+    "Winter": "is coming",
+    "Jesse, we have to cook": "breakfast",
+}
 
 
 def doge(args):
