@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>eOps Python Course: Session 01</title>
+
+		<meta name="description" content="Introduction to Python">
+		<meta name="author" content="Matthew Wedgwood">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="revealjs/css/reveal.min.css">
+		<link rel="stylesheet" href="revealjs/css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="revealjs/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Learn Python</h1>
+					<h2>Session 01: Intro</h2>
+					<p>
+                        <small><a href="mailto:mw@rmn.com">Matthew Wedgwood &lt;mw@rmn.com&gt;</a></small>
+					</p>
+					<aside class="notes">
+                        <ul>
+                            <li>Welcome</li>
+                            <li>We'll meet bi-weekly on Fridays</li>
+                            <li>The class loosely follows Dive Into Python by Mark Pilgrim</li>
+                            <li>I diverge a little bit on coding style and ordering</li>
+                            <li>Later we'll talk about useful third-party frameworks and libraries</li>
+                            <li>This is my first time teaching a class, so please stop me if I go to fast or if things don’t make sense</li>
+                            <li>Ask questions any time</li>
+                        </ul>
+					</aside>
+				</section>
+
+                <section>
+                    <h2>Course Objectives</h2>
+                    <p class="fragment">Language Proficiency</p>
+                    <p class="fragment">Python Standard Library</p>
+                    <p class="fragment">The Python Ecosystem</p>
+                    <p class="fragment">Important 3rd-party Projects</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>Syntax of Python is simple and predictable, but
+                                writing standards-compliant code can be tricky</li>
+                            <li>“Batteries Included”: The Python standard library
+                                is extensive, with everything from simple data
+                                structures to cryptography to web servers to HPC
+                                to 3D game development</li>
+                            <li>Packaging, testing, standards</li>
+                            <li>Active developer community and a rich ecosystem
+                                of third-party modules. We’ll primarily focus on
+                                systems-administration and web development.</li>
+                        </ul>
+                        <p>Anything else that anyone wanted to cover?</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Slides and Code</h2>
+                    <a href="http://github.com/slank/eops-py-course">is.gd/pyops</a>
+                </section>
+
+                <section>
+                    <h2>Today's Objectives</h2>
+                    <ul>
+                        <li>Learn about Python</li>
+                        <li>Install Python</li>
+                        <li>Run some python scripts</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Level Check</h1>
+                    <h3>What's your Python experience level?</h3>
+                    <aside class="notes">
+                        Show of hands:
+                        <ul>
+                            <li>Run python code</li>
+                            <li>Written python code</li>
+                            <li>Worked on a python project</li>
+                            <li>Consider yourself proficient</li>
+                            <li>Consider yourself a master</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Resources</h2>
+                    </section>
+                    <section>
+                        <h3>Dive Into Python</h3>
+                        <small><a href="http://www.diveintopython.net">www.diveintopython.net</a></small>
+                        <aside class="notes">
+                            <p><small>Dive Into Python: the de facto standard intro to Python for programmers</small></p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Python Documentation</h3>
+                        <small>Language Reference | Library Reference</small><br />
+                        <small><a href="http://docs.python.org">docs.python.org</a></small>
+                        <aside class="notes">
+                            <p><small>Language Reference: describes the syntactic details of the language in excruciating BNF glory. If you want to know the significance of whitespace or the syntax of attribute references, look here. You hardly ever use this until you discover the magic methods.</small></p>
+                            <p><small>Library Reference is the extensive documentation for the Python Standard Library. It describes the vast set of included modules included with python. As the guide says, “keep this under your pillow” - you’ll use it a lot.</small></p>
+                        </aside>
+                    </section>
+                    <section>
+                        <h3>Python Package Index</h3>
+                        <small><a href="http://pypi.python.org">pypi.python.org</a></small>
+                        <aside class="notes">
+                            <p><small>Python Package Index (Cheese Shop): Analog to CPAN, RubyGems, or (frown) NPM</small></p>
+                        </aside>
+                    </section>
+                </section>
+
+				<section>
+                    <h2>Python 2 vs Python 3</h2>
+                    <p class="fragment">What are the differences?</p>
+                    <p class="fragment">Which one should you start with?</p>
+                    <aside class="notes">
+                        <p>Python 3 is a backward-incompatible new version.
+                           Under development since May 2006 (under the code name
+                           Python 3000). Most of the language is the same, but
+                           there are key differences that make it incompatible.</p>
+                        <ul>
+                            <li>Module reorganization</li>
+                            <li>Lists are replaced with iterators as return values for most standard functions</li>
+                            <li>Expanded/more stringent Unicode support</li>
+                            <li>New syntax features</li>
+                            <li>Small number of syntax features removed</li>
+                        </ul>
+                        <p>Simple decision</p>
+                        <ul>
+                            <li>If you have no external module dependencies, use 3</li>
+                            <li>If all of the libraries you depend work with 3, use 3</li>
+                            <li>If you can port or drop libraries that only support 2, use 3</li>
+                            <li>Otherwise, use 2.7 and write careful, good code that requires few changes to go to 3</li>
+                        </ul>
+
+                        <p>For what it’s worth, I use python 2.7</p>
+
+                        <p>2to3 tool</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Installing Python<br />with Homebrew</h2>
+                    <aside class="notes">
+                        <p>We all use Mac OS, so install python with homebrew.
+                           On servers, install Python with a package manager.
+                           If you’re on Windows, cry (but installers are available)
+                        </p>
+                        <p>Be sure to install Python 2.7 or Python 3.2 (or later).
+                           These versions introduced broad changes to make porting
+                           or single codebases easier.</p>
+                    </aside>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ### demo
+                        ```
+                        brew install python python3
+
+                        # homebrew binaries
+                        if have_brew; then
+                            BPFX=$(brew --prefix)
+                            [ -d $BPFX/bin ] && PATH=$BPFX/bin:$PATH
+                            [ -d $BPFX/sbin ] && PATH=$BPFX/sbin:$PATH
+                        fi
+
+                        # User installed python scripts
+                        if [ -d "$HOME/.local/bin" ]; then
+                          # Linux
+                          PATH="$HOME/.local/bin:$PATH"
+                        fi
+                        if [ -d "$HOME/Library/Python/2.7/bin" ]; then
+                          # MacOS
+                          PATH="$HOME/Library/Python/2.7/bin:$PATH"
+                        fi
+
+                        export PATH
+                        ```
+                    </script>
+                </section>
+
+                <section>
+                    <h2>Other (lesser) options</h2>
+                    <p>Built-in Python | MacPython</p>
+                    <aside class="notes">
+                        <p>The version of Python included with MacOS is usually a
+                        bit old, but is reasonably recent in Mavericks. MacOS
+                        doesn't come with Python 3.</p>
+                        <p>MacPython is an old installer-based version of Python.
+                        You don’t need it or want it, but you may come across
+                        references to it.</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Running Python Scripts</h2>
+                    <p>verbose (-v)</p>
+                    <p>one-liners (-c)</p>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ### demo
+                        ```
+                        python wow.py
+                        python wow.py argument1 argument2 argument3
+
+                        python -v wow.py
+                        python -c "import sys; print sys.platform"
+                        ```
+                    </script>
+                </section>
+
+                <section>
+                    <h2>The Interactive Shell</h2>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ### demo
+                        ```
+                        python
+                        >>> 1 + 1
+                        >>> my_list = [1,2,3,4]
+                        >>> len(my_list)
+                        >>> import random
+                        >>> import string
+                        >>> print random.choice(string.ascii_letters)
+                        >>> ^D 
+
+                        # Run programs interactively with -i
+                        python -i wow.py
+                        >>> doge(more_args)
+                        ```
+                    </script>
+                </section>
+
+                <section>
+                    <h2>Python Executables</h2>
+                    <code>#!/usr/bin/env python[3]</code>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ### demo
+                        ```
+                        vi wow.py
+                        (Add #!/usr/bin/env python)
+                        chmod +x wow.py
+
+                        ./wow.py
+                        mv wow.py wow
+                        ./wow
+                        ```
+                    </script>
+                </section>
+
+                <section>
+                    <h1>Questions</h1>
+                </section>
+
+                <section>
+                    <h1>Homework</h1>
+                    <p class="fragment">(just kidding)</p>
+                    <p class="fragment">(or am I?)</p>
+                </section>
+
+                <section>
+                    <h1>Next Class - Writing Python</h1>
+                    <h3>Friday, 27 December</h3>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="revealjs/lib/js/head.min.js"></script>
+		<script src="revealjs/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
