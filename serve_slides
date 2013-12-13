@@ -30,6 +30,6 @@ os.chdir("slides")
 signal.signal(signal.SIGALRM, handler)
 signal.setitimer(signal.ITIMER_REAL, 3)
 
-print "Running webserver at {}:{}. Press ctrl-c to exit."
+print "Running webserver at {}:{}. Press ctrl-c to exit.".format(*server_address)
 print "The page will be opened for you in a browser window."
 httpd.serve_forever()
