@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>02: Writing Python</title>
+
+		<meta name="description" content="eOps Python Course, Section 2">
+		<meta name="author" content="Matthew Wedgwood">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="revealjs/css/reveal.min.css">
+		<link rel="stylesheet" href="revealjs/css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="revealjs/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <section>
+                    <h3>eOps Python Course: 02</h3>
+                    <h1>Writing Python Code</h1>
+                </section>
+
+                <section>
+                    <h2>Starting a Project on GitHub</h2>
+                    <aside class="notes">
+                        Starting your project on GitHub is a great way to get a
+                        properly-configured .gitignore file.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>demo</h2>
+                </section>
+
+                <section>
+                    <h2>Editors</h2>
+                    <ul>
+                        <li class="fragment">JetBrains PyCharm</li>
+                        <li class="fragment">Vim + Syntastic (+ neocomplete) (+ pudb)</li>
+                        <li class="fragment">others</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>PyCharm comes in a free (community) edition and a paid version. Both have a graphical debugger and traditional IDE with code completion, etc. The paid version includes support for remote debugging and extras for some popular web frameworks.</li>
+                            <li>I prefer vim in general for speed and platform-independence. If you use vim, you should manage your add-ins with pathogen (and possibly with git submodules if you keep your dotfiles in git). Syntastic provides always-on syntax checking and linting for nearly any language. Neocomplete provides inline completion. Pudb is a curses-mode debugger with support for breakpoints, etc.</li>
+                            <li>Other IDEs include Eclipse PyDev (free), Komodo, and Wing IDE</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>File Extensions</h2>
+                    <ul>
+                        <li>python code: .py</li>
+                        <li>byte-compiled python code: .pyc, .pyo (obtimized)</li>
+                        <li>compiled (C) modules: .so (in lib-dynload directory),<br />.pyd (Windows DLL)</li>
+                        <li>graphical (no console) python program: .pyw</li>
+                    </ul>
+                    <aside class="notes">
+                        <p>.py isn't required for scripts, but it is required for modules</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Imports</h2>
+                    <h3>References to external Python code</h3>
+                </section>
+
+                <section>
+                    <h2>The import statement</h2>
+                    <pre><code data-trim>
+import os
+os.path.dirname("/path/to/dir") # =&gt; "/path/to"
+
+import os.path
+os.path.dirname("/path/to/dir") # =&gt; "/path/to"
+
+from os.path import dirname
+dirname("/path/to/dir")         # =&gt; "/path/to"
+                    </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>Adds global references to external packages, modules, classes, or other objects.</li>
+                            <li>Python uses a dotted notation for package and module references, e.g. os.path.dirname()</li>
+                            <li>Packages are simply modules that contain other modules.</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>The Python Standard Library</h2>
+                    <a href="http://docs.python.org/library/index.html">http://docs.python.org/library/index.html</a>
+                    <aside class="notes">
+                        <p>Most packages in the standard library are written in Python - you can easily look at their code</p>
+                        <p>Some packages are written in C (and have a .pyo extension)</p>
+                        <p>The "sys" package is built into the python interpreter.</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Code format and scope</h2>
+                    <pre><code data-trim>
+first_name = "Zaphod"
+
+def hello():
+    """Say hello"""
+    print "Hello, {}".format(first_name)
+
+def reverse_name():
+    global first_name
+    first_name = first_name[::-1]
+                    </code></pre>
+                    <aside class="notes">
+                        <p>Whitespace matters</p>
+                        <p>Dynamic typing: varible and function declarations don't include type information</p>
+                        <p>Python searches for "first_name" in the current scope first, then in the next scope up.</p>
+                        <p>When writing to global variables, you must ask for them explicitly</p>
+                        <p>Docstrings can appear at the top of any scope (modules, classes, functions)</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Function Declarations</h2>
+                    <pre><code data-trim>
+first_name = "Zaphod"
+
+def hello(name):
+    """Say hello"""
+    print "Hello, {}".format(name)
+
+def hello_multi(name, greeting_mult=1):
+    """Say hello gratuitously"""
+    greeting_count = 3 * greeting_mult
+    for num in range(greeting_count):
+        hello(name)
+                    </code></pre>
+                    <aside class="notes">
+                        <p>Positional and keyword arguments</p>
+                        <p>Default values</p>
+                        <p>Variable scope inside of functions</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Calling Functions</h2>
+                    <pre><code data-trim>
+first_name = "Zaphod"
+
+def hello(name):
+    """Say hello"""
+    print "Hello, {}".format(name)
+
+def hello_multi(name, greeting_mult=1):
+    """Say hello gratuitously"""
+    greeting_count = 3 * greeting_mult
+    for num in range(greeting_count):
+        hello(name)
+    return greeting_count
+
+hello(first_name)
+hello_multi(first_name)
+hello_multi(first_name, 2)
+hello_multi(first_name, greeting_mult=2)
+                    </code></pre>
+                    <aside class="notes">
+                        <p>Positional arguments</p>
+                        <p>keyword arguments with positional</p>
+                        <p>Return values default to None</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>Deleting Variables</h2>
+                    <pre><code data-trim>
+first_name = "Zaphod"
+
+def hello(name):
+    """Say hello"""
+    print "Hello, {}".format(name)
+
+def hello_multi(name, greeting_mult=1):
+    """Say hello gratuitously"""
+    greeting_count = 3 * greeting_mult
+    for num in range(greeting_count):
+        hello(name)
+    return greeting_count
+
+del(first_name)
+hello(first_name)
+del(hello)
+hello_multi("Startibartfast")
+                    </code></pre>
+                    <aside class="notes">
+                        <p>Variables can be deleted</p>
+                    </aside>
+                </section>
+
+                <section>
+                    <h1>Questions</h1>
+                </section>
+
+                <section>
+                    <h2>Excercises</h2>
+                    <ul>
+                        <li>Write a script that uses the <code>sys</code> module to print the program arguments to stdout.</li>
+                        <li>Write a function <code>fib(n)</code> that calculates the fiboncci sequence to <code>n</code>.</li>
+                        <li>Write a script that accepts a single argument, <code>n</code>, and prints <code>fib(n)</code> to stdout.</li>
+                    </ul>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="revealjs/lib/js/head.min.js"></script>
+		<script src="revealjs/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+                parallaxBackgroundImage: 'images/background.png',
+                parallaxBackgroundSize: '3000px 1200px',
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'concave', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
